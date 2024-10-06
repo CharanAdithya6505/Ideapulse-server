@@ -17,13 +17,15 @@ model Blogs {
   id            Int      @id @default(autoincrement())
   title         String
   content       String
-  author        String
+  author        String // Keep this if you want to store author name separately
   image         String?
   category      String
   authorPic     String?
-  publishedDate DateTime  @default(now())
+  publishedDate DateTime @default(now())
   matter        String?
   tags          Tags[]
+  authorId      Int // Foreign key to reference the User model
+  user          User     @relation(fields: [authorId], references: [id]) // Relation to User
 }
 
 model Tags {
@@ -33,6 +35,10 @@ model Tags {
   blogId Int?
 }
 
-
-
-
+model User {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  password String
+  blogs    Blogs[] // A user can have many blogs
+}
