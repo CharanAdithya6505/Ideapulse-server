@@ -51,7 +51,8 @@ You need to create a `.env` file in the root directory with the following variab
 
 ```
 PORT=3002
-MONGODB_URI=your_mongodb_connection_string
+DATABASE_URL=""
+JWT_SECRET=""
 ```
 
 ## Blog Data Model
