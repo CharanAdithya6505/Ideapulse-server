@@ -5,7 +5,9 @@ const prisma = prismaClient;
 
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
-
+  if (!email || !password || !name) {
+    return res.status(400).send({ message: "Fields are missing!" });
+  }
   try {
     const existingUser = await prisma.user.findUnique({
       where: { email },
@@ -31,13 +33,16 @@ const registerUser = async (req, res) => {
 
     res.status(201).json({ token, userId: user.id });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: 'Error registering user', error });
   }
 };
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
-
+  if (!email || !password) {
+    return res.status(400).send({ message: "Fields are missing!" });
+  }
   try {
     const user = await prisma.user.findUnique({
       where: { email },
@@ -59,6 +64,7 @@ const loginUser = async (req, res) => {
 
     res.status(200).json({ token, userId: user.id });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: 'Error logging in', error });
   }
 };
