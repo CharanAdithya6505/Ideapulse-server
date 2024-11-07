@@ -5,9 +5,16 @@ const prisma = prismaClient;
 
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   if (!email || !password || !name) {
     return res.status(400).send({ message: "Fields are missing!" });
   }
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).send({ message: "Invalid email format!" });
+  }
+
   try {
     const existingUser = await prisma.user.findUnique({
       where: { email },
