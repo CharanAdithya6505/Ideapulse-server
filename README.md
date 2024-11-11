@@ -125,7 +125,7 @@ This project provides a REST API for user authentication and blog management usi
 
 ### Blog Management
 
-All blog routes require JWT authentication for `POST`, `PUT`, and `DELETE` methods. Attach the token in the `Authorization` header as `Bearer <token>`.
+All blog routes require JWT authentication for `POST`, `PUT`, and `DELETE` methods. Attach the token in the `Authorization` header as `<token>`.
 
 #### Create Blog
 
