@@ -143,7 +143,6 @@ All blog routes require JWT authentication for `POST`, `PUT`, and `DELETE` metho
     "category": "Tech",
     "authorPic": "author_pic_url",
     "matter": "Additional information",
-    "tags": ["Tech", "Programming"]
   }
   ```
 
